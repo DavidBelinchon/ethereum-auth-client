@@ -1,4 +1,4 @@
-# Ethhereum registration service module 
+# Ethereum registration service module 
 
 ## Installation (global)
 
