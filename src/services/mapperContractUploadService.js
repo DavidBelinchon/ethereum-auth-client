@@ -41,7 +41,7 @@ module.exports = (function initialize() {
       deployContract : function deployContract(callback,address) {
         var mapperContract = mapperContractInfoService.getContract();
 		  mapperContractInfoService.setContractAddress(address);
-		  callback(contract.address);
+		  callback(address);
       }
   }
 })();
