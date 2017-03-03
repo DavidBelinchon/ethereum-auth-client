@@ -64,11 +64,11 @@ module.exports = (function initialize() {
       return deferred.promise;
     },
 	//TODO docs
-    deployContract : function deployContract(){
+    deployContract : function deployContract(address){
         var deferred = Q.defer();
         mapperContractUploadService.deployContract(function(address){
             return deferred.resolve(address);
-        });
+        },address);
         return deferred.promise;
     },
 	//TODO docs

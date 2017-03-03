@@ -58,8 +58,8 @@ RegistryService.prototype.getAuthenticationKey =  function getAuthenticationKey(
  *
  * @return {promise} This promise (if invoked) returns address to deployed contract.
  */
-RegistryService.prototype.deploy = function deploy(){
-	return mapperService.deployContract();
+RegistryService.prototype.deploy = function deploy(address){
+	return mapperService.deployContract(address);
 };
 /**
  * getMyAccount - returns the account used by the geth node. Returns only the first

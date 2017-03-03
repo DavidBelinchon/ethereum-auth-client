@@ -38,25 +38,10 @@ module.exports = (function initialize() {
        * @param  function   callback to be called when the contract is successfully uploaded. Contract address is passed.
        * @return undefined
        */
-      deployContract : function deployContract(callback) {
+      deployContract : function deployContract(callback,address) {
         var mapperContract = mapperContractInfoService.getContract();
-        mapperContract.new(
-           {
-             from: accountService.getMyAccount(),
-             data: mapperContractInfoService.getCompiledContract(),
-             gas: 1000000000
-           }, function (e, contract){
-               if(e) {
-                   log.error("Contract deployment failed! " + e);
-               } else if (contract.address) {
-                   log.info('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
-                   mapperContractInfoService.setContractAddress(contract.address);
-                   contractEventListener.registerEventListener();
-                   if(callback) {
-                     callback(contract.address);
-                   }
-               }
-         });
+		  mapperContractInfoService.setContractAddress(address);
+		  callback(contract.address);
       }
   }
 })();
