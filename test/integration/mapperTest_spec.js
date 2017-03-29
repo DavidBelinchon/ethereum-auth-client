@@ -24,12 +24,12 @@
 const EthereumRegistrationService = require('../../index.js'),
 	  staticVariables = require("../staticVariables.js");
 
-const ethereumRegistrationService = new EthereumRegistrationService(staticVariables.ETHEREUM_HOST);
+const ethereumRegistrationService = new EthereumRegistrationService(staticVariables.ETHEREUM_HOST, staticVariables.SAMPLE_TEST_SMART_CONTRACT_ADDRESS);
 
 const ethereumConnectorService = require("../../src/services/ethereumConnectorService.js");
 	  
 describe("Integration tests", function () {
-    it(" - should expose web3", function () {
-        expect(ethereumConnectorService.web3).not.toBeNull();
+    it(" - should get secondary address from primary one", function () {
+        expect(ethereumRegistrationService.getAuthenticationKey(staticVariables.SAMPLE_TEST_PRIMARY_ADDRESS)).toBe(staticVariables.SAMPLE_TEST_SECONDARY_ADDRESS);
     });
 });

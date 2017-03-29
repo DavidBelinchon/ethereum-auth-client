@@ -24,11 +24,7 @@
 'use strict';
 
 const log = require('../util/logger.js'),
-      mapperContractInfoService = require('./mapperContractInfoService.js'),
-      mapperContractUploadService = require('./mapperContractUploadService.js'),
-      accountService = require('./accountService.js'),
-      contractEventListener = require('./contractEventListener.js'),
-      Q = require('q');
+      mapperContractInfoService = require('./mapperContractInfoService.js');
 
 module.exports = (function initialize() {
   return {
@@ -40,40 +36,8 @@ module.exports = (function initialize() {
      */
     getKeyEntry : function getKeyEntry(address) {
       const uploadedContract = mapperContractInfoService.getUploadedContract();
-      return uploadedContract.keyEntries.call(address);
+      return uploadedContract.primaryToSecondary.call(address);
     },
-    /**
-     * register - executes an keyEntries incrementing Ethereum transaction
-     *
-     * @return undefined
-     */
-    register : function register(ethAuthKey) {
-      var deferred = Q.defer();
-      const uploadedContract = mapperContractInfoService.getUploadedContract();
-      const myAccountAddress = accountService.getMyAccount();
-      contractEventListener.registerCallback(deferred, myAccountAddress);
-      uploadedContract.register.sendTransaction(ethAuthKey, {
-        from: myAccountAddress,
-        gas: 4700000}, function transactionCallback(err, address) {
-            if (err) {
-              log.error("Error occured for transaction:" + ethAuthKey + " " + err)
-            } else {
-              log.info("Starting registration transaction:" + ethAuthKey)
-            }
-      });
-      return deferred.promise;
-    },
-	//TODO docs
-    deployContract : function deployContract(address){
-        var deferred = Q.defer();
-        mapperContractUploadService.deployContract(function(address){
-            return deferred.resolve(address);
-        },address);
-        return deferred.promise;
-    },
-	//TODO docs
-    getContractAbi : function getContractAbi(){
-        return mapperContractInfoService.getContractAbi();
-    }
+
   }
 })();

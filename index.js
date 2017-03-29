@@ -24,51 +24,22 @@
 'use strict';
 
 const mapperService = require('./src/services/mapperService.js'),
-	  keyEntryService = require('./src/services/keyEntryService.js'),
-	  ethereumAccountService = require('./src/services/accountService.js'),
-	  ethereumConnectorService = require('./src/services/ethereumConnectorService.js');
+	  ethereumConnectorService = require('./src/services/ethereumConnectorService.js'),
+	  mapperContractInfoService = require('./src/services/mapperContractInfoService.js');
 
 module.exports = RegistryService;
 
-function RegistryService(ethereumUrl) {
+function RegistryService(ethereumUrl, contractAddress) {
 	ethereumConnectorService.setEthereumHost(ethereumUrl);
+	mapperContractInfoService.setContractAddress(contractAddress);
 }
-
-/**
- * Creates a Smart Contract called KeyEntry in which the owner and the authenticationKey are stored.
- *
- * @param {authenticationKey} Ethereum's address.
- * @return {promise} This promise (if invoked) returns new address to KeyEntry.
- */
-RegistryService.prototype.register = function register(authenticationKey){
-	return mapperService.register(authenticationKey);
-};
- 
 /**
  * Gets authenticationKey from key entry.
  *
  * @return {authenticationKey}
  */
 RegistryService.prototype.getAuthenticationKey =  function getAuthenticationKey(address){
-	return keyEntryService.createContractInfo(mapperService.getKeyEntry(address)).getAuthenticationKey();
-};
-
-/**
- * deploy - sends the contract deploying transaction into Ethereum
- *
- * @return {promise} This promise (if invoked) returns address to deployed contract.
- */
-RegistryService.prototype.deploy = function deploy(address){
-	return mapperService.deployContract(address);
-};
-/**
- * getMyAccount - returns the account used by the geth node. Returns only the first
- * account as the architecture assumes only one geth account per node.
- *
- * @return String Ethereum account address
- */
-RegistryService.prototype.getAccount = function getAccount(){
-	return ethereumAccountService.getMyAccount();
+	return mapperService.getKeyEntry(address);
 };
 /**
  * getContractAbi - returns account's ABI (smart contract's particular API) used by the geth node.
