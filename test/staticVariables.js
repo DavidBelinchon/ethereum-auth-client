@@ -25,4 +25,4 @@ this.ETHEREUM_ADDRESS_FORMAT = /0x[Aa-fF0-9]{40}/;
 this.SAMPLE_TEST_PRIMARY_ADDRESS = '0xcb1d8464edb698c61f48f33ec88898eb0750ffc8';
 this.SAMPLE_TEST_SECONDARY_ADDRESS = '0xc01aea6d6551aa2780534a323fa55db1e396cb32';
 this.SAMPLE_TEST_SMART_CONTRACT_ADDRESS = '0xa0b45d537a95614f1d578fb2d39122bc67490a7a';
-this.ETHEREUM_HOST = 'https://giropsten.infura.io/<token>'
+this.ETHEREUM_HOST = 'https://ropsten.infura.io/<token>'

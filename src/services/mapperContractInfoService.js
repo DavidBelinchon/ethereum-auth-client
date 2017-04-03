@@ -27,5 +27,5 @@ const contractInfoFactory = require('../factories/contractInfoFactory.js');
 
 const CONTRACT_ABI = [{"constant":false,"inputs":[{"name":"secondary","type":"address"}],"name":"mapAddress","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"secondaryInUse","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"primaryToSecondary","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"primary","type":"address"},{"indexed":false,"name":"secondary","type":"address"}],"name":"AddressMapped","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"code","type":"uint256"},{"indexed":false,"name":"sender","type":"address"}],"name":"Error","type":"event"}]
 
-module.exports =  contractInfoFactory.createContractInfo(CONTRACT_ABI, COMPILED_CONTRACT);
+module.exports =  contractInfoFactory.createContractInfo(CONTRACT_ABI);
 

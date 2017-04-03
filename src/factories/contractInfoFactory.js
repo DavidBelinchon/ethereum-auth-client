@@ -27,9 +27,8 @@ const connectorService = require('../services/ethereumConnectorService.js');
 
 module.exports = (function initialize() {
     return {
-        createContractInfo : function(abi, compiled){
+        createContractInfo : function(abi){
             var contractAbi = abi;
-            var compiledContract = compiled;
             var contractAddress;
             var uploadedContract;
 
@@ -39,9 +38,6 @@ module.exports = (function initialize() {
                 },
                 getContractAbi : function getContractAbi() {
                     return contractAbi;
-                },
-                getCompiledContract : function getCompiledContract() {
-                    return compiledContract;
                 },
                 getUploadedContract : function getUploadedContract() {
                     if(!contractAddress) {
