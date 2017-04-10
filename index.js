@@ -38,7 +38,7 @@ function RegistryService(ethereumUrl, contractAddress) {
  *
  * @return {authenticationKey}
  */
-RegistryService.prototype.getAuthenticationKey =  function getAuthenticationKey(address){
+RegistryService.prototype.getAuthenticationKey =  function getAuthenticationKewy(address){
 	return mapperService.getKeyEntry(address);
 };
 /**
@@ -47,4 +47,10 @@ RegistryService.prototype.getAuthenticationKey =  function getAuthenticationKey(
  */
 RegistryService.prototype.getContractAbi = function getContractAbi(){
 	return mapperService.getContractAbi();
+};
+/**
+ * registerEventListener - registers a callback function to listen to AddressMapped events
+ */
+RegistryService.prototype.registerEventListener = function registerEventListener(listener){
+    return mapperService.watchAddressMappedEvent(listener);
 };
